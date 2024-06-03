@@ -75,7 +75,7 @@ func loadFromPaths(
 
 func (p *plugin) Transform(m resmap.ResMap) error {
 	for _, patch := range p.loadedPatches {
-		target, err := m.GetById(patch.OrgId())
+		target, err := m.GetByCurrentId(patch.OrgId())
 		if err != nil {
 			return err
 		}

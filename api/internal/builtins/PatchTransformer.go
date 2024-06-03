@@ -109,7 +109,7 @@ func (p *PatchTransformerPlugin) transformStrategicMerge(m resmap.ResMap) error 
 	}
 
 	for _, patch := range p.smPatches {
-		target, err := m.GetById(patch.OrgId())
+		target, err := m.GetByCurrentId(patch.OrgId())
 		if err != nil {
 			return fmt.Errorf("no resource matches strategic merge patch %q: %w", patch.OrgId(), err)
 		}

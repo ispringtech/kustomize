@@ -4,7 +4,6 @@
 package krusty_test
 
 import (
-	"strings"
 	"testing"
 
 	kusttest_test "sigs.k8s.io/kustomize/api/testutils/kusttest"
@@ -126,51 +125,44 @@ spec:
         image: image-canary-mango
 `)
 
-	err := th.RunWithErr("mango", th.MakeDefaultOptions())
-	if !strings.Contains(
-		err.Error(), "multiple matches for Id Deployment.v1.apps/banana.[noNs]; failed to find unique target for patch Deployment.v1.apps/banana.[noNs]") {
-		t.Fatalf("Unexpected err: %v", err)
-	}
-
-	// Uncomenting the following makes it work with kustomize v3.9.2 and bellow.
-
-	//  m := th.Run("/app", th.MakeDefaultOptions())
-	//	th.AssertActualEqualsExpected(m, `
-	//apiVersion: apps/v1
-	//kind: Deployment
-	//metadata:
-	//  name: deployment-a
-	//spec:
-	//  selector:
-	//    matchLabels:
-	//      component: deployment
-	//  template:
-	//    metadata:
-	//      labels:
-	//        component: deployment
-	//    spec:
-	//      containers:
-	//      - image: image-a
-	//        name: container-a
-	//---
-	//apiVersion: apps/v1
-	//kind: Deployment
-	//metadata:
-	//  labels:
-	//    type: canary
-	//  name: deployment-canary-a
-	//spec:
-	//  selector:
-	//    matchLabels:
-	//      component: deployment
-	//      type: canary
-	//  template:
-	//    metadata:
-	//      labels:
-	//        component: deployment
-	//    spec:
-	//      containers:
-	//      - image: image-canary-a
-	//        name: container-a
-	// `)
+	m := th.Run("mango", th.MakeDefaultOptions())
+	th.AssertActualEqualsExpected(m, `
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banana-mango
+spec:
+  selector:
+    matchLabels:
+      component: banana
+  template:
+    metadata:
+      labels:
+        component: banana
+    spec:
+      containers:
+      - image: image-mango
+        name: banana
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    type: canary
+  name: banana-canary-mango
+spec:
+  selector:
+    matchLabels:
+      component: banana
+      type: canary
+  template:
+    metadata:
+      labels:
+        component: banana
+        type: canary
+    spec:
+      containers:
+      - image: image-canary-mango
+        name: banana
+`)
 }

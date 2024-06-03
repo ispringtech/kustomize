@@ -344,8 +344,8 @@ paths:
 - patch.yaml
 `, targetWithNamespace)
 	if assert.Error(t, err) && !errorContains(
-		err, "failed to find unique target for patch") {
-		t.Fatalf("expected error to contain %q but get %v", "failed to find target for patch", err)
+		err, "no matches for") {
+		t.Fatalf("expected error to contain %q but get %v", "no matches for", err)
 	}
 }
 
@@ -609,6 +609,7 @@ func addNamespace(namespace string, base string) string {
 
 // compareExpectedError compares the expectedError and the actualError return by GetFieldValue
 func compareExpectedError(t *testing.T, name string, err error, errorMsg string) {
+	t.Helper()
 	if assert.Error(t, err, name) && !errorContains(err, errorMsg) {
 		t.Fatalf("%q; - expected error: \"%s\", got error: \"%v\"",
 			name, errorMsg, err.Error())
@@ -1039,42 +1040,42 @@ func TestMultipleNamespaces(t *testing.T) {
 			base:          []string{addNamespace("ns1", baseResource(Deployment))},
 			patch:         []string{addNamespace("ns2", changeImagePatch(Deployment, "nginx:1.7.9"))},
 			errorExpected: true,
-			errorMsg:      "failed to find unique target for patch",
+			errorMsg:      "no matches for",
 		},
 		{
 			name:          "withschema-nil-ns2",
 			base:          []string{baseResource(Deployment)},
 			patch:         []string{addNamespace("ns2", changeImagePatch(Deployment, "nginx:1.7.9"))},
 			errorExpected: true,
-			errorMsg:      "failed to find unique target for patch",
+			errorMsg:      "no matches for",
 		},
 		{
 			name:          "withschema-ns1-nil",
 			base:          []string{addNamespace("ns1", baseResource(Deployment))},
 			patch:         []string{changeImagePatch(Deployment, "nginx:1.7.9")},
 			errorExpected: true,
-			errorMsg:      "failed to find unique target for patch",
+			errorMsg:      "no matches for",
 		},
 		{
 			name:          "noschema-ns1-ns2",
 			base:          []string{addNamespace("ns1", baseResource(MyCRD))},
 			patch:         []string{addNamespace("ns2", changeImagePatch(MyCRD, "nginx:1.7.9"))},
 			errorExpected: true,
-			errorMsg:      "failed to find unique target for patch",
+			errorMsg:      "no matches for",
 		},
 		{
 			name:          "noschema-nil-ns2",
 			base:          []string{baseResource(MyCRD)},
 			patch:         []string{addNamespace("ns2", changeImagePatch(MyCRD, "nginx:1.7.9"))},
 			errorExpected: true,
-			errorMsg:      "failed to find unique target for patch",
+			errorMsg:      "no matches for",
 		},
 		{
 			name:          "noschema-ns1-nil",
 			base:          []string{addNamespace("ns1", baseResource(MyCRD))},
 			patch:         []string{changeImagePatch(MyCRD, "nginx:1.7.9")},
 			errorExpected: true,
-			errorMsg:      "failed to find unique target for patch",
+			errorMsg:      "no matches for",
 		},
 	}
 
