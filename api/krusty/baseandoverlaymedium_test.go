@@ -161,7 +161,7 @@ incididunt ut labore et dolore magna aliqua.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mungebot
+  name: baseprefix-mungebot
 spec:
   replicas: 2
   template:

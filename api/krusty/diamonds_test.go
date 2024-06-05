@@ -22,14 +22,13 @@ import (
 // Patches are applied at various levels,
 // requiring more specificity as needed.
 //
-//         dev      prod
-//             \   /
-//            tenants
-//          /    |    \
-//      kirk   spock  bones
-//          \    |    /
-//             base
-//
+//	   dev      prod
+//	       \   /
+//	      tenants
+//	    /    |    \
+//	kirk   spock  bones
+//	    \    |    /
+//	       base
 func writeDiamondBase(th kusttest_test.Harness) {
 	th.WriteK("base", `
 resources:
@@ -165,7 +164,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: federation
+  name: t-federation
 data:
   guardian: ofTheGalaxy
 ---

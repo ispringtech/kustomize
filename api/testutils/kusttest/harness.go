@@ -95,6 +95,7 @@ func (th Harness) MakeOptionsPluginsEnabled() krusty.Options {
 
 // Run, failing on error.
 func (th Harness) Run(path string, o krusty.Options) resmap.ResMap {
+	th.t.Helper()
 	m, err := krusty.MakeKustomizer(&o).Run(th.fSys, path)
 	if err != nil {
 		th.t.Fatal(err)
@@ -104,6 +105,7 @@ func (th Harness) Run(path string, o krusty.Options) resmap.ResMap {
 
 // Run, failing if there is no error.
 func (th Harness) RunWithErr(path string, o krusty.Options) error {
+	th.t.Helper()
 	_, err := krusty.MakeKustomizer(&o).Run(th.fSys, path)
 	if err == nil {
 		th.t.Fatalf("expected error")
@@ -125,15 +127,18 @@ func (th Harness) WriteLegacyConfigs(fName string) {
 
 func (th Harness) AssertActualEqualsExpected(
 	m resmap.ResMap, expected string) {
+	th.t.Helper()
 	th.AssertActualEqualsExpectedWithTweak(m, nil, expected)
 }
 
 func (th Harness) AssertActualEqualsExpectedNoIdAnnotations(m resmap.ResMap, expected string) {
+	th.t.Helper()
 	m.RemoveBuildAnnotations()
 	th.AssertActualEqualsExpectedWithTweak(m, nil, expected)
 }
 
 func (th Harness) AssertActualEqualsExpectedWithTweak(
 	m resmap.ResMap, tweaker func([]byte) []byte, expected string) {
+	th.t.Helper()
 	assertActualEqualsExpectedWithTweak(th, m, tweaker, expected)
 }

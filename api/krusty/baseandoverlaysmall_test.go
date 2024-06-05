@@ -161,7 +161,7 @@ patchesStrategicMerge:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myDeployment
+  name: a-myDeployment
 spec:
   replicas: 999
 `)
@@ -287,7 +287,7 @@ BAR=baz
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myDeployment
+  name: a-myDeployment
 spec:
   replicas: 1000
 `)
@@ -390,7 +390,7 @@ patchesStrategicMerge:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myDeployment
+  name: a-myDeployment
 spec:
   replicas: 1000
 `)

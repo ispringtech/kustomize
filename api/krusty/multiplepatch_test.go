@@ -688,7 +688,7 @@ configMapGenerator:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: b-nginx
 spec:
   template:
     spec:
@@ -710,7 +710,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: b-nginx
 spec:
   template:
     spec:
@@ -878,7 +878,7 @@ func TestMultiplePatchesNoConflict(t *testing.T) {
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -900,7 +900,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -1016,7 +1016,7 @@ func TestNonCommutablePatches(t *testing.T) {
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -1037,7 +1037,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -1150,7 +1150,7 @@ func TestMultiplePatchesWithOnePatchDeleteDirective(t *testing.T) {
 	additivePatch := `apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -1163,7 +1163,7 @@ spec:
 	deletePatch := `apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -1289,7 +1289,7 @@ func TestMultiplePatchesBothWithPatchDeleteDirective(t *testing.T) {
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -1301,7 +1301,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:

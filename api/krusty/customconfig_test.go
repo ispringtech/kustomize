@@ -268,7 +268,7 @@ spec:
 apiVersion: foo/v1
 kind: AnimalPark
 metadata:
-  name: sandiego
+  name: x-sandiego
 spec:
   gorillaRef:
     name: ursus

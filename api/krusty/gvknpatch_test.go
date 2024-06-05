@@ -240,7 +240,7 @@ patchesStrategicMerge:
 apiVersion: v1
 kind: Deployment
 metadata:
-  name: old-name
+  name: new-name
 spec:
   replicas: 999
 `)
@@ -361,9 +361,9 @@ patchesStrategicMerge:
 `)
 	th.WriteF("overlay/depPatch.yaml", `
 apiVersion: v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: old-name
+  name: new-name
 spec:
   replicas: 999
 `)

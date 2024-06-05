@@ -27,7 +27,7 @@ patchesStrategicMerge:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prod-foo
+  name: emea-prod-foo
 spec:
   replicas: 999
 `)
@@ -86,7 +86,7 @@ patchesStrategicMerge:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prod-foo
+  name: emea-prod-foo
 spec:
   replicas: 999
 `)

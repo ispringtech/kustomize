@@ -267,7 +267,7 @@ patchesStrategicMerge:
 apiVersion: v1beta1
 kind: Bee
 metadata:
-  name: bee
+  name: x-bee
 spec:
   action: makehoney
 `)

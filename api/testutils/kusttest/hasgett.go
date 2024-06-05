@@ -19,6 +19,7 @@ func assertActualEqualsExpectedWithTweak(
 	ht hasGetT,
 	m resmap.ResMap,
 	tweaker func([]byte) []byte, expected string) {
+	ht.GetT().Helper()
 	AssertActualEqualsExpectedWithTweak(ht.GetT(), m, tweaker, expected)
 }
 

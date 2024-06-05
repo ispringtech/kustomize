@@ -307,7 +307,7 @@ func TestMergeAndReplaceGenerators(t *testing.T) {
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
@@ -505,7 +505,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: team-foo-nginx
 spec:
   template:
     spec:
